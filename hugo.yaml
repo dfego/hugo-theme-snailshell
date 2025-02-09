@@ -18,3 +18,9 @@ module:
     min: 0.116.0
   imports:
     - path: github.com/gohugoio/hugo-mod-bootstrap-scss/v5
+    - path: github.com/dfego/PhotoSwipe
+      mounts:
+        - source: src/js
+          target: assets/js/photoswipe
+        - source: src
+          target: assets/css
