@@ -1,0 +1,118 @@
+$primary: #7F1146;
+$primary-transparent: #7F1146E0;
+
+@import "bootstrap/scss/_functions.scss";
+@import "bootstrap/scss/_variables.scss";
+
+$nav_height: 56px;
+
+$spacers: map-merge($spacers, (6: $spacer * 6));
+$display-font-sizes: map-merge($display-font-sizes, (7: 2rem));
+
+@import "bootstrap/scss/bootstrap";
+
+.color-primary {
+    color: $primary;
+}
+
+// I hate this, but it's necessary to have anchor links not end up behind the navbar.
+// I could theoretically use javascript to compute this, but I hate that too.
+html {
+    scroll-padding-top: $nav_height !important;
+}
+
+h2 {
+    color: $primary;
+    font-weight: 300;
+}
+
+// Adapted from Bootstrap v5.3 docs pages
+.anchor-link {
+    text-decoration: none;
+}
+
+.anchor-link>::after {
+    padding-left: .2em;
+    opacity: 0;
+    transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+    content: "#";
+}
+
+.anchor-link:focus>::after,
+.anchor-link>:hover::after,
+.anchor-link>:target::after {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .anchor-link {
+        transition: none
+    }
+}
+
+.baseof main {
+    margin-top: -$nav_height + 16px;
+}
+
+nav {
+    background-color: transparent;
+    transition: all 0.125s;
+}
+
+.navbar-opaque {
+    background-color: $primary-transparent;
+}
+
+.banner {
+    // Get this behind the navbar and beyond
+    height: 256px;
+    position: relative;
+    top: -$nav_height;
+
+    // Get the h1 to display vertically aligned
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner>h1 {
+    @extend .display-1;
+    color: $white;
+    position: relative;
+    z-index: 2;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.banner-filter {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    filter: brightness(50%);
+    background-image: url("/images/nav-background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.landing {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.landing .row {
+    color: $white;
+    position: relative;
+    z-index: 2;
+}
+
+.landing-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    filter: brightness(50%);
+    background-image: url("/images/wip.jpg");
+    background-size: cover;
+}

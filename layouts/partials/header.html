@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-md" data-bs-theme="light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">{{ .Site.Title }}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-label="Toggle navbar menu for narrow screens">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                    Navigation
+                </h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    {{ range .Site.Data.site.headerLinks }}
+                    {{ if ne .url nil }}
+                    <li class="nav-item">
+                        {{ if eq $.RelPermalink .url}}
+                        <a class="nav-link active" href="{{ .url }}" aria-current="page">{{ .name }}</a>
+                        {{ else }}
+                        <a class="nav-link" href="{{ .url }}">{{ .name }}</a>
+                        {{ end }}
+                    </li>
+                    {{ else if ne .links nil }}
+                    {{ $id := printf "%s-dropdown" .name | anchorize }}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="{{ $id }}" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">{{ .name }}</a>
+                        <ul class="dropdown-menu" aria-labelledby="{{ $id }}">
+                            {{ range .links }}
+                            <li>
+                                <a class="dropdown-item" href="{{ .url }}">
+                                    {{ with .icon_classes }}<i class="{{ . }} pe-2"></i>{{ end }}
+                                    {{ .name }}
+                                </a>
+                            </li>
+                            {{ end }}
+                        </ul>
+                    </li>
+                    {{ end }}
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

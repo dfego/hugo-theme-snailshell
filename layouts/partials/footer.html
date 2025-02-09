@@ -1,0 +1,10 @@
+<hr class="mb-0">
+{{ with $links := .Site.Data.site.links }}
+<div class="text-center p-2 d-flex justify-content-center gap-3">
+    {{ range where $links ".icon_classes" "!=" nil }}
+    <a href="{{ .url }}" target="_blank" title="{{ .name }}"><i class="{{ .icon_classes }}"></i></a>
+    {{ end }}
+</div>
+{{ end }}
+
+<div class="text-center p-3 color-primary">© {{ now.Year }} {{ .Site.Title }}. All rights reserved.</div>

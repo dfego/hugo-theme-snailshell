@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <p>{{ .Content }}</p>
+        </div>
+        <div class="col-sm text-center">
+            {{ with index (.Resources.ByType "image") 0 }}
+            {{ $image := .Resize "x500" }}
+            <img src="{{ $image.RelPermalink }}" class="img-fluid" alt="{{ $image.Name }}">
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

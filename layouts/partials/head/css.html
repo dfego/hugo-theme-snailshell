@@ -1,0 +1,42 @@
+
+<!-- Bootstrap -- I put these before fonts for now or the fonts don't work? -->
+{{- with resources.Get "sass/main.scss" -}}
+  {{/*  setup Sass options  */}}
+  {{- $options := dict
+    "includePaths" "node_modules"
+  -}}
+  {{- with . | css.Sass $options -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- end -}}
+{{- end -}}
+
+
+<!-- Fonts, I think I need these first -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+  rel="stylesheet">
+
+{{- with resources.Get "css/main.css" }}
+  {{- if eq hugo.Environment "development" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- else }}
+    {{- with . | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- $css_files := slice
+  "css/fontawesome.css"
+  "css/brands.css"
+  "css/solid.css"
+  "css/regular.css"
+  "photoswipe/dist/photoswipe.css"
+-}}
+{{- range $css_files -}}
+  {{- with . | resources.Get | minify }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- end }}
+{{- end -}}

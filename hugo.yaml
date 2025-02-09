@@ -1,0 +1,35 @@
+baseURL: https://example.org/
+languageCode: en-US
+title: My New Hugo Site
+menus:
+  main:
+    - name: Home
+      pageRef: /
+      weight: 10
+    - name: Portfolio
+      pageRef: /
+      weight: 20
+    - name: Tags
+      pageRef: /tags
+      weight: 30
+module:
+  hugoVersion:
+    extended: false
+    min: 0.116.0
+  mounts: # all this is here because I wanted to add node_modules but that erases the defaults
+  - source: content
+    target: content
+  - source: static
+    target: static
+  - source: layouts
+    target: layouts
+  - source: data
+    target: data
+  - source: assets
+    target: assets
+  - source: node_modules
+    target: assets
+  - source: i18n
+    target: i18n
+  - source: archetypes
+    target: archetypes

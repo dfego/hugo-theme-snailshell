@@ -1,0 +1,69 @@
+{{ define "main" }}
+<div class="container gallery" id="portfolio-gallery">
+    {{ range where .Site.Data.art "tags" "intersect" (slice .Page.Params.type ) }}
+    <div class="row border-bottom border-2 p-2">
+        <div class="col-sm-4">
+            <div>
+                {{ $anchor := printf " %s %d" .name .year | anchorize }}
+                <a href="#{{ $anchor }}" class="anchor-link">
+                    <h2 id="{{ $anchor }}">{{ .name }}</h2>
+                </a>
+            </div>
+            <div>
+                <p>{{ .year }}</p>
+            </div>
+        </div>
+        {{ if ne .src nil }}
+        <div class="col-sm">
+            {{ $image := (printf "images/gallery/%s" .src) | resources.Get }}
+            {{ $thumbnail := $image.Resize "x600" }}
+            <a href="{{ $image.RelPermalink }}" class="gallery-item" data-pswp-width="{{ $image.Width }}"
+                data-pswp-height="{{ $image.Height }}">
+                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ .description }}">
+            </a>
+            {{ else if ne .srcs nil }}
+            <div class="col-sm-auto">
+                {{ $carousel_id := math.Rand }}
+                <div id="{{ $carousel_id }}" class="carousel carousel-fade">
+                    {{ with .srcs }}
+                    <div class="carousel-inner">
+                        {{ range $index, $item := . }}
+                        {{ $image := (printf "images/gallery/%s" $item.src) | resources.Get }}
+                        {{ $thumbnail := $image.Resize "x600" }}
+                        {{ if eq $index 0 }}
+                        <div class="carousel-item active">
+                            <a href="{{ $image.RelPermalink }}" class="gallery-item"
+                                data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}">
+                                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid"
+                                    alt="{{ $item.description }}">
+                            </a>
+                        </div>
+                        {{ else }}
+                        <div class="carousel-item">
+                            <a href="{{ $image.RelPermalink }}" class="gallery-item"
+                                data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}">
+                                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid"
+                                    alt="{{ $item.description }}">
+                            </a>
+                        </div>
+                        {{ end }}
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                    <button class="carousel-control-prev" type="button" data-bs-target="#{{ $carousel_id }}"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#{{ $carousel_id }}"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}

@@ -1,0 +1,24 @@
+{
+  "author": "Dan Fego",
+  "comments": {
+    "dependencies": {
+      "bootstrap": "project",
+      "photoswipe": "project"
+    },
+    "devDependencies": {}
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "photoswipe": "^5.4.4"
+  },
+  "description": "A [Hugo](https://gohugo.io/) theme for an art portfolio using Bootstrap 5.",
+  "devDependencies": {},
+  "license": "MIT",
+  "main": "index.js",
+  "name": "snailshell",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "commonjs",
+  "version": "1.0.0"
+}
