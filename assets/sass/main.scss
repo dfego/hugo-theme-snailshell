@@ -7,7 +7,7 @@ $nav_height: 56px;
 $spacers: map-merge($spacers, (6: $spacer * 6));
 $display-font-sizes: map-merge($display-font-sizes, (7: 2rem));
 
-@import "scss/bootstrap/bootstrap";
+@import "bootstrap/bootstrap";
 
 .color-primary {
     color: $primary;
