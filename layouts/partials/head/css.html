@@ -1,11 +1,8 @@
 
 <!-- Bootstrap -- I put these before fonts for now or the fonts don't work? -->
-{{- with resources.Get "sass/main.scss" -}}
+{{- with resources.Get "scss/main.scss" -}}
   {{/*  setup Sass options  */}}
-  {{- $options := dict
-    "includePaths" "node_modules"
-  -}}
-  {{- with . | css.Sass $options -}}
+  {{- with . | css.Sass -}}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{- end -}}
 {{- end -}}
@@ -33,7 +30,7 @@
   "css/brands.css"
   "css/solid.css"
   "css/regular.css"
-  "photoswipe/dist/photoswipe.css"
+  "css/photoswipe.css"
 -}}
 {{- range $css_files -}}
   {{- with . | resources.Get | minify }}
