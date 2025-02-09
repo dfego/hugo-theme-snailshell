@@ -2,10 +2,7 @@
 <!-- Bootstrap -- I put these before fonts for now or the fonts don't work? -->
 {{- with resources.Get "sass/main.scss" -}}
   {{/*  setup Sass options  */}}
-  {{- $options := dict
-    "includePaths" "node_modules"
-  -}}
-  {{- with . | css.Sass $options -}}
+  {{- with . | css.Sass -}}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{- end -}}
 {{- end -}}
