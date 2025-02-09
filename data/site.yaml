@@ -1,0 +1,26 @@
+# Example site.yaml file. Copy into site data/ directory and modify.
+define: &external_links
+  - name: Bluesky
+    url: https://bsky.app/
+    icon_classes: fa-brands fa-bluesky
+  - name: Instagram
+    url: https://instagram.com/
+    icon_classes: fa-brands fa-instagram
+
+headerLinks:
+  - name: Home
+    url: /
+  - name: Portfolio
+    links:
+      - name: Sculptural
+        url: /portfolio/sculptural/
+      - name: Functional
+        url: /portfolio/functional/
+  - name: Gallery
+    url: /gallery/
+  - name: My Links
+    links: *external_links
+  - name: About
+    url: /about/
+
+links: *external_links

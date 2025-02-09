@@ -1,8 +1,10 @@
 
 <!-- Bootstrap -- I put these before fonts for now or the fonts don't work? -->
 {{- with resources.Get "scss/main.scss" -}}
-  {{/*  setup Sass options  */}}
-  {{- with . | css.Sass -}}
+  {{ $options := dict
+    "vars" site.Params.style
+  }}
+  {{- with . | css.Sass $options -}}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{- end -}}
 {{- end -}}
