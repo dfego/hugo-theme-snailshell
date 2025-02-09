@@ -1,6 +1,6 @@
 module github.com/dfego/hugo-theme-snailshell
 
-go 1.23.6
+go 1.23
 
 require (
 	github.com/dfego/PhotoSwipe v0.0.0-20250209191139-a22bf1977289 // indirect
