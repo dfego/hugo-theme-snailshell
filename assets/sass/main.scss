@@ -1,15 +1,15 @@
 $primary: #7F1146;
 $primary-transparent: #7F1146E0;
 
-@import "bootstrap/functions";
-@import "bootstrap/variables";
+@import "scss/bootstrap/functions";
+@import "scss/bootstrap/variables";
 
 $nav_height: 56px;
 
 $spacers: map-merge($spacers, (6: $spacer * 6));
 $display-font-sizes: map-merge($display-font-sizes, (7: 2rem));
 
-@import "bootstrap/bootstrap";
+@import "scss/bootstrap/bootstrap";
 
 .color-primary {
     color: $primary;
