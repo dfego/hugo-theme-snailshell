@@ -1,4 +1,4 @@
 import "js/bootstrap";
-import "js/photoswipe/photoswipe.js";
+import "./photoswipe.js";
 import "./navbar.js";
 import "./gallery.js";

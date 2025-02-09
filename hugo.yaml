@@ -20,7 +20,7 @@ module:
     - path: github.com/gohugoio/hugo-mod-bootstrap-scss/v5
     - path: github.com/dfego/PhotoSwipe
       mounts:
-        - source: src/js
+        - source: dist
           target: assets/js/photoswipe
-        - source: src
+        - source: dist
           target: assets/css
