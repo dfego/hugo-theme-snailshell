@@ -2,6 +2,7 @@
 <!-- Bootstrap -- I put these before fonts for now or the fonts don't work? -->
 {{- with resources.Get "scss/main.scss" -}}
   {{ $options := dict
+    "outputStyle" "compressed"
     "vars" site.Params.style
   }}
   {{- with . | css.Sass $options -}}
