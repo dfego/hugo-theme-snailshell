@@ -3,6 +3,8 @@
     {{ range where .Site.Data.art ".src" "ne" nil }}
     {{ $image := (printf "images/gallery/%s" .src) | resources.Get }}
     {{ $thumbnail := $image.Process "fit 600x600" }}
+    {{ $image := $image.Process "webp" }}
+    {{ $thumbnail := $thumbnail.Process "webp" }}
     <a href="{{ $image.RelPermalink }}" class="gallery-item" data-pswp-width="{{ $image.Width }}"
         data-pswp-height="{{ $image.Height }}">
         <img src="{{ $thumbnail.RelPermalink }}" class="lazyload" alt="{{ .description }}"
@@ -13,6 +15,8 @@
     {{ range .srcs }}
     {{ $image := (printf "images/gallery/%s" .src) | resources.Get }}
     {{ $thumbnail := $image.Process "fit 600x600" }}
+    {{ $image := $image.Process "webp" }}
+    {{ $thumbnail := $thumbnail.Process "webp" }}
     <a href="{{ $image.RelPermalink }}" class="gallery-item" data-pswp-width="{{ $image.Width }}"
         data-pswp-height="{{ $image.Height }}">
         <img src="{{ $thumbnail.RelPermalink }}" class="lazyload" alt="{{ .description }}"
