@@ -92,7 +92,7 @@ nav {
     position: absolute;
     z-index: 1;
     filter: brightness(50%);
-    background-image: url("/images/nav-background.jpg");
+    background-image: url($nav-background-image);
     background-size: cover;
     background-position: center;
 }
@@ -115,6 +115,6 @@ nav {
     position: absolute;
     z-index: -1;
     filter: brightness(50%);
-    background-image: url("/images/home-background.jpg");
+    background-image: url($home-background-image);
     background-size: cover;
 }

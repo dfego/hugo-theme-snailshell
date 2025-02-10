@@ -14,3 +14,5 @@ module:
 params:
   style:
     primary_color: "#663399"
+    nav_background_image: /images/nav-background.jpg
+    home_background_image: /images/home-background.jpg
