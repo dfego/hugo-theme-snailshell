@@ -22,7 +22,7 @@
             {{ $thumbnail := $thumbnail.Process "webp" }}
             <a href="{{ $image.RelPermalink }}" class="gallery-item" data-pswp-width="{{ $image.Width }}"
                 data-pswp-height="{{ $image.Height }}">
-                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ .description }}">
+                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ .description }}" loading="lazy">
             </a>
             {{ else if ne .srcs nil }}
             <div class="col-sm-auto">
@@ -39,16 +39,16 @@
                         <div class="carousel-item active">
                             <a href="{{ $image.RelPermalink }}" class="gallery-item"
                                 data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}">
-                                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid"
-                                    alt="{{ $item.description }}">
+                                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ $item.description }}"
+                                    loading="lazy">
                             </a>
                         </div>
                         {{ else }}
                         <div class="carousel-item">
                             <a href="{{ $image.RelPermalink }}" class="gallery-item"
                                 data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}">
-                                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid"
-                                    alt="{{ $item.description }}">
+                                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ $item.description }}"
+                                    loading="lazy">
                             </a>
                         </div>
                         {{ end }}

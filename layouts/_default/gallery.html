@@ -8,7 +8,7 @@
     <a href="{{ $image.RelPermalink }}" class="gallery-item" data-pswp-width="{{ $image.Width }}"
         data-pswp-height="{{ $image.Height }}">
         <img src="{{ $thumbnail.RelPermalink }}" class="lazyload" alt="{{ .description }}"
-            width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}">
+            width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" loading="lazy">
     </a>
     {{ end }}
     {{ range where .Site.Data.art ".srcs" "ne" nil }}
@@ -20,7 +20,7 @@
     <a href="{{ $image.RelPermalink }}" class="gallery-item" data-pswp-width="{{ $image.Width }}"
         data-pswp-height="{{ $image.Height }}">
         <img src="{{ $thumbnail.RelPermalink }}" class="lazyload" alt="{{ .description }}"
-            width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}">
+            width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" loading="lazy">
     </a>
     {{end}}
     {{ end }}
