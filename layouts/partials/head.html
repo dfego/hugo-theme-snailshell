@@ -3,8 +3,8 @@
 <title>
     {{ if .IsHome }}
     {{ site.Title }}
-    {{ else if eq .CurrentSection.Title "Events" }}
-    {{ printf "Events | %s | %s" .Title site.Title }}
+    {{ else if eq .CurrentSection.Title "Exhibitions" }}
+    {{ printf "Exhibitions | %s | %s" .Title site.Title }}
     {{ else }}
     {{ printf "%s | %s" .Title site.Title }}
     {{ end }}
