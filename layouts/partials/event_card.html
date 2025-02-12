@@ -1,0 +1,29 @@
+{{ $start_date_machine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+{{ $start_date := .Date | time.Format ":date_long" }}
+{{ $end_date_machine := .ExpiryDate | time.Format "2006-01-02T15:04:05-07:00" }}
+{{ $end_date := .ExpiryDate | time.Format ":date_long" }}
+{{ $images := .Resources.ByType "image" }}
+<div class="col">
+    <div class="card">
+        <h3 class="card-header">{{ .Title }}</h3>
+        <div class="card-body row">
+            <div class="col-sm">
+                <div class="fw-bold">
+                    <time datetime="{{ $start_date_machine }}">{{ $start_date }}</time> -
+                    <time datetime="{{ $end_date_machine }}">{{ $end_date }}</time>
+                </div>
+                <!-- <div><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></div> -->
+                <div>{{ .Params.venue }}</div>
+                <div>{{ .Params.city }}</div>
+                <div>
+                    <p>{{ .Content }}</p>
+                </div>
+            </div>
+            {{ with index $images 0 }}
+            {{ $thumbnail := .Resize "x600" }}
+            {{ $thumbnail := $thumbnail.Process "webp" }}
+            <div class="col"><img src="{{ $thumbnail.RelPermalink }}" class="img-fluid"></div>
+            {{ end }}
+        </div>
+    </div>
+</div>

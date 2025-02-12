@@ -1,0 +1,43 @@
+{{ define "banner_text" }}
+<h1>Events</h1>
+{{ end }}
+
+{{ define "main" }}
+<div class="container">
+    {{ $startDateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+    {{ $startDateHuman := .Date | time.Format ":date_long" }}
+    {{ $endDateMachine := .ExpiryDate | time.Format "2006-01-02T15:04:05-07:00" }}
+    {{ $endDateHuman := .ExpiryDate | time.Format ":date_long" }}
+
+    <div class="gallery" id="portfolio-gallery">
+        {{ range .Resources.ByType "image" }}
+        <div class="row border-bottom border-2 p-2">
+            <div class="col-sm-6">
+                <div>
+                    <h2>{{ $.Title }}</h2>
+                </div>
+                <div>
+                    <time datetime="{{ $startDateMachine }}">{{ $startDateHuman }}</time> -
+                    <time datetime="{{ $endDateMachine }}">{{ $endDateHuman }}</time>
+                </div>
+                <div>
+                    <p>{{ $.Content }}</p>
+                </div>
+            </div>
+            <div class="col-sm text-center">
+                {{ $image := . }}
+                {{/* Bug in image processing related to color profiles, so resize before converting */}}
+                {{ $thumbnail := $image.Resize "x600" }}
+                {{ $image := $image.Process "webp" }}
+                {{ $thumbnail := $thumbnail.Process "webp" }}
+                <a href="{{ $image.RelPermalink }}" class="gallery-item" data-pswp-width="{{ $image.Width }}"
+                    data-pswp-height="{{ $image.Height }}">
+                    <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ .Params.description }}"
+                        loading="lazy">
+                </a>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

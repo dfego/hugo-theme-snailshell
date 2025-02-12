@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="container">
+    <div>
+        {{ with where .RegularPages "ExpiryDate" "gt" now }}
+        <h2>Current and Upcoming Events</h2>
+        {{ partial "event_card_table.html" . }}
+        {{ end }}
+    </div>
+    <hr>
+    <div>
+        {{ with where .RegularPages "ExpiryDate" "lt" now }}
+        <h2>Past Events</h2>
+        {{ partial "event_card_table.html" . }}
+        {{ end }}
+    </div>
+</div>
+{{ end }}
