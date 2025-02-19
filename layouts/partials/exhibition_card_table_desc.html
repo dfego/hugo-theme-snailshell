@@ -1,5 +1,5 @@
 <div class="row row-cols-1 row-cols-sm-2 g-4">
-    {{ range . }}
+    {{ range sort . "Date" "desc" }}
     {{ if eq .Params.card_type "tb" }}
     {{ partial "exhibition_card_tb.html" . }}
     {{ else if eq .Params.card_type "lr" }}
