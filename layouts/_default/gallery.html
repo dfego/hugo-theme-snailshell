@@ -1,6 +1,7 @@
 {{ define "main" }}
 <div class="gallery" id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
-    {{ range where .Site.Data.art ".src" "ne" nil }}
+    {{ range .Site.Data.art }}
+    {{ if ne .src nil }}
     {{ $image := (printf "images/gallery/%s" .src) | resources.Get }}
     {{ $thumbnail := $image.Process "fit 600x600" }}
     {{ $image := $image.Process "webp" }}
@@ -11,7 +12,6 @@
             width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" loading="lazy">
     </a>
     {{ end }}
-    {{ range where .Site.Data.art ".srcs" "ne" nil }}
     {{ range .srcs }}
     {{ $image := (printf "images/gallery/%s" .src) | resources.Get }}
     {{ $thumbnail := $image.Process "fit 600x600" }}
@@ -22,7 +22,7 @@
         <img src="{{ $thumbnail.RelPermalink }}" class="lazyload" alt="{{ .description }}"
             width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" loading="lazy">
     </a>
-    {{end}}
+    {{ end }}
     {{ end }}
 </div>
 {{ end }}
