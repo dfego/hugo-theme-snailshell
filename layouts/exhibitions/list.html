@@ -2,14 +2,14 @@
 <div class="container">
     <div>
         {{ with where .RegularPages "ExpiryDate" "gt" now }}
-        <h2>Current and Upcoming Exhibitions</h2>
+        <h2>Current and Upcoming</h2>
         {{ partial "exhibition_card_table_asc.html" . }}
         {{ end }}
     </div>
     <hr>
     <div>
         {{ with where .RegularPages "ExpiryDate" "lt" now }}
-        <h2>Past Exhibitions</h2>
+        <h2>Previous</h2>
         {{ partial "exhibition_card_table_desc.html" . }}
         {{ end }}
     </div>
