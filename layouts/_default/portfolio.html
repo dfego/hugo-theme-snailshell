@@ -13,9 +13,9 @@
                 <p>{{ .year }}</p>
             </div>
         </div>
-        {{ if ne .src nil }}
+        {{ if (eq (len .srcs) 1) }}
         <div class="col-sm">
-            {{ $image := (printf "images/gallery/%s" .src) | resources.Get }}
+            {{ $image := (printf "images/gallery/%s" (index .srcs 0)) | resources.Get }}
             {{/* Bug in image processing related to color profiles, so resize before converting */}}
             {{ $thumbnail := $image.Resize "x600" }}
             {{ $image := $image.Process "webp" }}
@@ -24,14 +24,15 @@
                 data-pswp-height="{{ $image.Height }}">
                 <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ .description }}" loading="lazy">
             </a>
-            {{ else if ne .srcs nil }}
+            {{ else }}
+            {{ $description := .description }}
             <div class="col-sm-auto">
                 {{ $carousel_id := math.Rand }}
                 <div id="{{ $carousel_id }}" class="carousel carousel-fade">
                     {{ with .srcs }}
                     <div class="carousel-inner">
                         {{ range $index, $item := . }}
-                        {{ $image := (printf "images/gallery/%s" $item.src) | resources.Get }}
+                        {{ $image := (printf "images/gallery/%s" $item) | resources.Get }}
                         {{ $thumbnail := $image.Resize "x600" }}
                         {{ $image := $image.Process "webp" }}
                         {{ $thumbnail := $thumbnail.Process "webp" }}
@@ -39,7 +40,7 @@
                         <div class="carousel-item active">
                             <a href="{{ $image.RelPermalink }}" class="gallery-item"
                                 data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}">
-                                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ $item.description }}"
+                                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ $description }}"
                                     loading="lazy">
                             </a>
                         </div>
@@ -47,7 +48,7 @@
                         <div class="carousel-item">
                             <a href="{{ $image.RelPermalink }}" class="gallery-item"
                                 data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}">
-                                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ $item.description }}"
+                                <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ $description }}"
                                     loading="lazy">
                             </a>
                         </div>
