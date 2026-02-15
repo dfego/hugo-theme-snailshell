@@ -19,8 +19,6 @@
             {{ $image := (printf "images/gallery/%s" (index .srcs 0)) | resources.Get }}
             {{/* Bug in image processing related to color profiles, so resize before converting */}}
             {{ $thumbnail := $image.Resize "x600" }}
-            {{ $image := $image.Process "webp" }}
-            {{ $thumbnail := $thumbnail.Process "webp" }}
             <a href="{{ $image.RelPermalink }}" class="gallery-item" data-pswp-width="{{ $image.Width }}"
                 data-pswp-height="{{ $image.Height }}">
                 <img src="{{ $thumbnail.RelPermalink }}" class="img-fluid" alt="{{ .description }}" loading="lazy">
@@ -35,8 +33,6 @@
                         {{ range $index, $item := . }}
                         {{ $image := (printf "images/gallery/%s" $item) | resources.Get }}
                         {{ $thumbnail := $image.Resize "x600" }}
-                        {{ $image := $image.Process "webp" }}
-                        {{ $thumbnail := $thumbnail.Process "webp" }}
                         {{ if eq $index 0 }}
                         <div class="carousel-item active">
                             <a href="{{ $image.RelPermalink }}" class="gallery-item"

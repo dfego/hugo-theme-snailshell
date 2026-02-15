@@ -22,7 +22,6 @@
             <div class="col">
                 {{ range $images }}
                 {{ $thumbnail := .Resize "200x" }}
-                {{ $thumbnail := $thumbnail.Process "webp" }}
                 <div class="py-1"><img src="{{ $thumbnail.RelPermalink }}" class="img-fluid"></div>
                 {{ end }}
             </div>
