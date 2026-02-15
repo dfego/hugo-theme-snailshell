@@ -1,6 +1,6 @@
 {{ define "main" }}
 <div class="gallery" id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
-    {{ range .Site.Data.art }}
+    {{ range sort .Site.Data.art }}
     {{ $description := .description }}
     {{ range .srcs }}
     {{ $image := (printf "images/gallery/%s" . ) | resources.Get }}

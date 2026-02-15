@@ -1,10 +1,11 @@
 {{ define "main" }}
 <div class="container gallery" id="portfolio-gallery">
-    {{ range where .Site.Data.art "tags" "intersect" (slice .Page.Params.type ) }}
+    {{ range $id := (index .Site.Data.collections .Page.Params.collection_name) }}
+    {{ with (index $.Site.Data.art (string $id)) }}
     <div class="row border-bottom border-2 p-2">
         <div class="col-sm-4">
             <div>
-                {{ $anchor := printf " %s %d" .name .year | anchorize }}
+                {{ $anchor := $id | anchorize }}
                 <a href="#{{ $anchor }}" class="anchor-link">
                     <h2 id="{{ $anchor }}">{{ .name }}</h2>
                 </a>
@@ -70,6 +71,7 @@
                 {{ end }}
             </div>
         </div>
+        {{ end }}
         {{ end }}
     </div>
     {{ end }}
